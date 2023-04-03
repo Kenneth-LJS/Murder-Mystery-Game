@@ -1,0 +1,91 @@
+$ui-transition-duration-seconds: 0.6;
+// $ui-transition-duration-seconds: 10;
+$ui-transition-duration: #{$ui-transition-duration-seconds}s;
+
+.transitionContainer {
+    position: static;
+    visibility: visible;
+    opacity: 1;
+    max-width: 1000000vmax;
+    max-height: 1000000vmax;
+    overflow: auto;
+
+    // transition: opacity $ui-transition-duration $ui-transition-duration,
+    //     position 0s $ui-transition-duration,
+    //     visibility 0s $ui-transition-duration,
+    //     max-width 0s $ui-transition-duration,
+    //     max-height 0s $ui-transition-duration,
+    //     overflow 0s $ui-transition-duration;
+
+    &.appear:not(.appearActive) {
+        opacity: 0;
+        position: absolute;
+        visibility: hidden;
+        max-width: 0;
+        max-height: 0;
+        overflow: hidden;
+
+        transition: all 0s;
+    }
+
+    &.appearActive {
+        position: static;
+        visibility: visible;
+        opacity: 1;
+        max-width: 10000vmax;
+        max-height: 10000vmax;
+        overflow: auto;
+    
+        transition: opacity $ui-transition-duration $ui-transition-duration,
+            position 0s $ui-transition-duration,
+            visibility 0s $ui-transition-duration,
+            max-width 0s $ui-transition-duration,
+            max-height 0s $ui-transition-duration,
+            overflow 0s $ui-transition-duration;
+    }
+
+    &.exit, &.exitActive {
+        opacity: 0;
+        width: 100%;
+        max-width: 0;
+        max-height: 0;
+        overflow: hidden;
+
+        transition: opacity $ui-transition-duration,
+            max-width 0s $ui-transition-duration,
+            max-height 0s $ui-transition-duration,
+            overflow 0s $ui-transition-duration;
+    }
+
+    &.exitDone {
+        opacity: 0;
+        max-width: 0;
+        max-height: 0;
+        overflow: hidden;
+    }
+}
+
+.backButton {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+
+    border: none;
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backbuttonChevron {
+    width: 32px;
+    height: 32px;
+}
+
+:export {
+    uiTransitionDurationSeconds: $ui-transition-duration-seconds
+}

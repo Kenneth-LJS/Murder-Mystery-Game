@@ -1,0 +1,652 @@
+{
+    "TESTAA": {
+        "startNode": "1",
+        "nodes": {
+            "1": {
+                "type": "html",
+                "content": "QUESTION (hint, the answer is ABC)",
+                "goto": "2"
+            },
+            "2": {
+                "type": "text-input",
+                "prompt": "Hmm...",
+                "responses": [
+                    {
+                        "check": {
+                            "type": "string",
+                            "string": "abc",
+                            "isCaseSensitive": false
+                        },
+                        "action": {
+                            "type": "goto",
+                            "goto": "3"
+                        }
+                    }
+                ],
+                "fallthroughResponse": "Incorrect."
+            },
+            "3": {
+                "type": "html",
+                "content": "Correct!"
+            }
+        }
+    },
+    "TESTAB": {
+        "startNode": "1",
+        "nodes": {
+            "1": {
+                "type": "html",
+                "content": "<p>It was a dark and stormy night blah blah blah</p><p style=\"text-align: center;\"><img src=\"image-1.png\"></p><p style=\"text-align: center;\"><video src=\"video-2.mp4\" autoplay loop></p>",
+                "goto": "2"
+            },
+            "2": {
+                "type": "text-input",
+                "prompt": "Hmm...",
+                "responses": [
+                    {
+                        "check": {
+                            "type": "string",
+                            "string": "bBb",
+                            "isCaseSensitive": true
+                        },
+                        "action": {
+                            "type": "goto",
+                            "goto": "3"
+                        }
+                    },
+                    {
+                        "check": {
+                            "type": "string",
+                            "string": "bbb",
+                            "isCaseSensitive": false
+                        },
+                        "action": {
+                            "type": "message",
+                            "message": "Capitalisation is important! The answer is bBb."
+                        }
+                    },
+                    {
+                        "check": {
+                            "type": "regex",
+                            "regex": "^aaa$",
+                            "regexFlags": "i"
+                        },
+                        "action": {
+                            "type": "message",
+                            "message": "Try BBB instead?"
+                        }
+                    }
+                ],
+                "fallthroughResponse": "Incorrect. Try \"AAA\"."
+            },
+            "3": {
+                "type": "html",
+                "content": "Choose an option...",
+                "goto": "4"
+            },
+            "4": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "This is the <em>first</em> option!",
+                        "goto": "5-a"
+                    },
+                    {
+                        "label": "This is the <strong>second</strong> option!",
+                        "goto": "5-b"
+                    },
+                    {
+                        "label": "This is the <em><strong>third</strong></em> option!",
+                        "goto": "5-c"
+                    }
+                ]
+            },
+            "5-a": {
+                "type": "html",
+                "content": "You chose the first option!",
+                "goto": "6"
+            },
+            "5-b": {
+                "type": "html",
+                "content": "You chose the second option!",
+                "goto": "6"
+            },
+            "5-c": {
+                "type": "html",
+                "content": "You chose the third option!",
+                "goto": "6"
+            },
+            "6": {
+                "type": "html",
+                "content": "Would you like to try again?",
+                "goto": "7"
+            },
+            "7": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "Yes",
+                        "goto": "3"
+                    },
+                    {
+                        "label": "No",
+                        "goto": "8"
+                    }
+                ]
+            },
+            "8": {
+                "type": "html",
+                "content": "Okay..."
+            }
+        }
+    },
+    "TESTAC": {
+        "startNode": "1",
+        "nodes": {
+            "1": {
+                "type": "html",
+                "content": "<h1 style=\"text-align: center; font-size: 2em;\">The Long Game</h1><h2 style=\"text-align: center; font-style: italic;\">The Lounge - 3:05 p.m.</h2>",
+                "goto": "1b"
+            },
+            "1b": {
+                "type": "html",
+                "content": "<p><i>*thuk*</i></p><p>Polished wood clacked against the checkered marble board. You lift your paw, reluctantly withdrawing it from the center of the table. Your opponent smiles, rubbing his paws together with glee as he picks up his own piece, knocking yours over.</p><p><i>*clack*</i></p><p>“Jin, was it?” you say, addressing the eastern dragon sitting before you. Or rather, around you. His winding tail easily spanned half the room, and you couldn’t help but feel trapped as it circled the table.</p><p>“That’s me.” He replied, his whiskers flicking around as he spoke.</p><p><i>*thok*</i></p><p>“And how do you know the deceased?”</p><p>“We’re business partners.” He replied. “I’m an inventor, you see, and I sell machines in my home country. You’ve heard of steam-powered chronomatic ejectors? Ocular vitalizing pendulums? Self-regulating prosthetic motivators?”</p><p>“No.”</p><p>Jin sighs. “Well at any rate, Finn helps me import my products to sell in this fine country, while I do the same in my home country. We’ve been in the business for years.”</p><p><i>*thuk*</i></p><p>“So what brought you here?”</p><p>“Well, every few years I come over to visit to see how business is doing across the pond. I arrived last month and when Finn heard he invited me for the party. He seemed very eager to meet me.”</p><p><i>*clack*</i></p><p>“So what happened on that day?” You ask. The eastern dragon seemed lost in his own thoughts. You notice him recoil slightly as he looks down.</p><p style=\"text-align: center; padding: 20px;\"><img src=\"chess.png\"></p>",
+                "goto": "2"
+            },
+            "2": {
+                "type": "html",
+                "content": "<p>Which piece should I move (white)?</p>",
+                "goto": "3"
+            },
+            "3": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "Queen",
+                        "goto": "4-b"
+                    },
+                    {
+                        "label": "Rook",
+                        "goto": "4-a"
+                    },
+                    {
+                        "label": "Bishop",
+                        "goto": "4-b"
+                    },
+                    {
+                        "label": "Pawn",
+                        "goto": "4-b"
+                    },
+                    {
+                        "label": "King",
+                        "goto": "4-b"
+                    }
+                ]
+            },
+            "4-a": {
+                "type": "text-input",
+                "prompt": "Which cell should I move it to?",
+                "responses": [
+                    {
+                        "check": {
+                            "type": "string",
+                            "string": "h7"
+                        },
+                        "action": {
+                            "type": "goto",
+                            "goto": "6"
+                        }
+                    },
+                    {
+                        "check": {
+                            "type": "string",
+                            "string": "7h"
+                        },
+                        "action": {
+                            "type": "goto",
+                            "goto": "6"
+                        }
+                    },
+                    {
+                        "check": {
+                            "type": "regex",
+                            "regex": ".*",
+                            "regexFlags": "i"
+                        },
+                        "action": {
+                            "type": "goto",
+                            "goto": "5"
+                        }
+                    }
+                ]
+            },
+            "4-b": {
+                "type": "text-input",
+                "prompt": "Which cell should I move it to?",
+                "responses": [
+                    {
+                        "check": {
+                            "type": "regex",
+                            "regex": ".*",
+                            "regexFlags": "i"
+                        },
+                        "action": {
+                            "type": "goto",
+                            "goto": "5"
+                        }
+                    }
+                ]
+            },
+            "5": {
+                "type": "html",
+                "content": "<p>No, that's not right...</p>",
+                "goto": "2"
+            },
+            "6": {
+                "type": "html",
+                "content": "<p>“Checkmate.” That’s the end of that, you think triumphantly.</p><p>“Aw.” He mouths. Good, maybe now you can get somewhere.</p>",
+                "goto": "7"
+            },
+            "7": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "“So, what happened on that day?”",
+                        "goto": "8-a"
+                    },
+                    {
+                        "label": "“Did anyone leave the room while you were in the lounge?”",
+                        "goto": "8-b"
+                    },
+                    {
+                        "label": "“Did you hear a loud scream at any time?”",
+                        "goto": "8-c"
+                    }
+                ]
+            },
+            "8-a": {
+                "type": "html",
+                "content": "<p>“Well, I was in the lounge playing games from 2 to 5, I didn’t think much of it. At 5 I had to meet Finn for a business meeting in the study.”</p>",
+                "goto": "9"
+            },
+            "8-b": {
+                "type": "html",
+                "content": "<p>“Well… Finn and Chester had to leave because of the… you know. Watson left shortly after to do some work, and then Lara because she was bored. Only Ruth and I stayed.”</p>",
+                "goto": "9"
+            },
+            "8-c": {
+                "type": "html",
+                "content": "<p>“Oh yes. We were in the middle of our meeting when we heard a crash and ran into the bedroom. Ruth knocked over the wooden footlocker, the clumsy thing. We helped her tidy up, and by then it was 6. The party started, and well, you know what happened next.”</p>",
+                "goto": "9"
+            },
+            "9": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "“So, what happened on that day?”",
+                        "goto": "8-a"
+                    },
+                    {
+                        "label": "“Did anyone leave the room while you were in the lounge?”",
+                        "goto": "8-b"
+                    },
+                    {
+                        "label": "“Did you hear a loud scream at any time?”",
+                        "goto": "8-c"
+                    },
+                    {
+                        "label": "Leave",
+                        "goto": "10"
+                    }
+                ]
+            },
+            "10": {
+                "type": "html",
+                "content": "<p>“Well alright, I think that’s all I need.” You thank the dragon, and get up from your seat, when you feel a tug at your leg.</p><p>“How about one more game?” He asks. You sigh, freeing your leg from his tail as you leave.</p>"
+            }
+        }
+    },
+    "TESTAD": {
+        "startNode": "start",
+        "nodes": {
+            "start": {
+                "type": "html",
+                "content": "Which test would you like to try?",
+                "goto": "test-selection"
+            },
+            "test-selection": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "Options with no fallthrough",
+                        "goto": "options-no-fallthrough"
+                    },
+                    {
+                        "label": "Option with fallthrough",
+                        "goto": "options-with-fallthrough"
+                    },
+                    {
+                        "label": "Option with shared flags",
+                        "goto": "options-shared-flags"
+                    }
+                ]
+            },
+            "options-no-fallthrough": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "Option 1",
+                        "goto": "options-no-fallthrough-1",
+                        "flag": "options-no-fallthrough-flag-1"
+                    },
+                    {
+                        "label": "Option 2",
+                        "goto": "options-no-fallthrough-2",
+                        "flag": "options-no-fallthrough-flag-2"
+                    },
+                    {
+                        "label": "Option 3 (always available)",
+                        "goto": "options-no-fallthrough-3"
+                    }
+                ]
+            },
+            "options-no-fallthrough-1": {
+                "type": "html",
+                "content": "You chose option 1!",
+                "goto": "options-no-fallthrough"
+            },
+            "options-no-fallthrough-2": {
+                "type": "html",
+                "content": "You chose option 2!",
+                "goto": "options-no-fallthrough"
+            },
+            "options-no-fallthrough-3": {
+                "type": "html",
+                "content": "You chose option 3!",
+                "goto": "options-no-fallthrough"
+            },
+            "options-with-fallthrough": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "Option 1",
+                        "goto": "options-with-fallthrough-1",
+                        "flag": "options-with-fallthrough-flag-1"
+                    },
+                    {
+                        "label": "Option 2",
+                        "goto": "options-with-fallthrough-2",
+                        "flag": "options-with-fallthrough-flag-2"
+                    },
+                    {
+                        "label": "Option 3",
+                        "goto": "options-with-fallthrough-3",
+                        "flag": "options-with-fallthrough-flag-3"
+                    }
+                ],
+                "fallthroughGoto": "options-with-fallthrough-end"
+            },
+            "options-with-fallthrough-1": {
+                "type": "html",
+                "content": "You chose option 1!",
+                "goto": "options-with-fallthrough"
+            },
+            "options-with-fallthrough-2": {
+                "type": "html",
+                "content": "You chose option 2!",
+                "goto": "options-with-fallthrough"
+            },
+            "options-with-fallthrough-3": {
+                "type": "html",
+                "content": "You chose option 3!",
+                "goto": "options-with-fallthrough"
+            },
+            "options-with-fallthrough-end": {
+                "type": "html",
+                "content": "You have exhausted all the options!"
+            },
+            "options-shared-flags": {
+                "type": "html",
+                "content": "Choose which prompt to try (they share the same options)",
+                "goto": "options-shared-flags-prompt-options"
+            },
+            "options-shared-flags-prompt-options": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "Prompt A",
+                        "goto": "options-shared-flags-prompt-a"
+                    },
+                    {
+                        "label": "Prompt B",
+                        "goto": "options-shared-flags-prompt-b"
+                    }
+                ],
+                "fallthroughGoto": "options-shared-flags-end"
+            },
+            "options-shared-flags-prompt-a": {
+                "type": "html",
+                "content": "Choice A:",
+                "goto": "options-shared-flags-prompt-a-options"
+            },
+            "options-shared-flags-prompt-a-options": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "Option 1A",
+                        "goto": "options-shared-flags-1",
+                        "flag": "options-shared-flags-flag-1"
+                    },
+                    {
+                        "label": "Option 2A",
+                        "goto": "options-shared-flags-2",
+                        "flag": "options-shared-flags-flag-2"
+                    },
+                    {
+                        "label": "Option 3A",
+                        "goto": "options-shared-flags-3",
+                        "flag": "options-shared-flags-flag-3"
+                    },
+                    {
+                        "label": "Option 4A",
+                        "goto": "options-shared-flags-4",
+                        "flag": "options-shared-flags-flag-4"
+                    },
+                    {
+                        "label": "Option 5A",
+                        "goto": "options-shared-flags-5",
+                        "flag": "options-shared-flags-flag-5"
+                    }
+                ],
+                "fallthroughGoto": "options-shared-flags-end"
+            },
+            "options-shared-flags-prompt-b": {
+                "type": "html",
+                "content": "Choice B:",
+                "goto": "options-shared-flags-prompt-b-options"
+            },
+            "options-shared-flags-prompt-b-options": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "Option 1B",
+                        "goto": "options-shared-flags-1",
+                        "flag": "options-shared-flags-flag-1"
+                    },
+                    {
+                        "label": "Option 2B",
+                        "goto": "options-shared-flags-2",
+                        "flag": "options-shared-flags-flag-2"
+                    },
+                    {
+                        "label": "Option 3B",
+                        "goto": "options-shared-flags-3",
+                        "flag": "options-shared-flags-flag-3"
+                    },
+                    {
+                        "label": "Option 4B",
+                        "goto": "options-shared-flags-4",
+                        "flag": "options-shared-flags-flag-4"
+                    },
+                    {
+                        "label": "Option 5B",
+                        "goto": "options-shared-flags-5",
+                        "flag": "options-shared-flags-flag-5"
+                    }
+                ],
+                "fallthroughGoto": "options-shared-flags-end"
+            },
+            "options-shared-flags-1": {
+                "type": "html",
+                "content": "You picked option 1",
+                "goto": "options-shared-flags"
+            },
+            "options-shared-flags-2": {
+                "type": "html",
+                "content": "You picked option 2",
+                "goto": "options-shared-flags"
+            },
+            "options-shared-flags-3": {
+                "type": "html",
+                "content": "You picked option 3",
+                "goto": "options-shared-flags"
+            },
+            "options-shared-flags-4": {
+                "type": "html",
+                "content": "You picked option 4",
+                "goto": "options-shared-flags"
+            },
+            "options-shared-flags-5": {
+                "type": "html",
+                "content": "You picked option 5",
+                "goto": "options-shared-flags"
+            },
+            "options-shared-flags-end": {
+                "type": "html",
+                "content": "You are out of options"
+            }
+        }
+    },
+    "TESTAE": {
+        "startNode": "start",
+        "nodes": {
+            "start": {
+                "type": "html",
+                "content": "Choose action",
+                "goto": "actions"
+            },
+            "actions": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "Set flag to true",
+                        "goto": "set-flag-true"
+                    },
+                    {
+                        "label": "Set flag to false",
+                        "goto": "set-flag-false"
+                    },
+                    {
+                        "label": "Check flag",
+                        "goto": "check-flag"
+                    }
+                ]
+            },
+            "set-flag-true": {
+                "type": "set-flag",
+                "flag": "flag-name",
+                "value": true,
+                "goto": "start"
+            },
+            "set-flag-false": {
+                "type": "set-flag",
+                "flag": "flag-name",
+                "value": false,
+                "goto": "start"
+            },
+            "check-flag": {
+                "type": "check-flag",
+                "flag": "flag-name",
+                "gotoIfTrue": "flag-true",
+                "gotoIfFalse": "flag-false"
+            },
+            "flag-true": {
+                "type": "html",
+                "content": "The flag is set to true"
+            },
+            "flag-false": {
+                "type": "html",
+                "content": "The flag is set to false"
+            }
+        }
+    },
+    "TESTAF": {
+        "startNode": "1",
+        "nodes": {
+            "1": {
+                "type": "html",
+                "content": "Let’s find out more!",
+                "goto": "2"
+            },
+            "2": {
+                "type": "click-image-input",
+                "prompt": "Click to investigate",
+                "image": "image-1.png",
+                "clickMap": "image-1-click-map.inline.png",
+                "clickActions": {
+                    "#00ff00": {
+                        "type": "goto",
+                        "goto": "click-kerac"
+                    },
+                    "#0000ff": {
+                        "type": "goto",
+                        "goto": "click-decro"
+                    },
+                    "#ffff00": {
+                        "type": "goto",
+                        "goto": "click-backpack"
+                    },
+                    "#ff0000": {
+                        "type": "message",
+                        "message": "“Hey, sweety!”"
+                    },
+                    "#00ffff": {
+                        "type": "message",
+                        "message": "!"
+                    }
+                },
+                "fallthroughResponse": "Nothing here…"
+            },
+            "click-kerac": {
+                "type": "html",
+                "content": "Kerac, the green dragon."
+            },
+            "click-decro": {
+                "type": "html",
+                "content": "Decro, the arctic wolf."
+            },
+            "click-backpack": {
+                "type": "html",
+                "content": "Decro’s backpack."
+            }
+        }
+    },
+    "TESTAG": {
+        "startNode": "1",
+        "nodes": {
+            "1": {
+                "type": "html",
+                "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod libero at lacinia luctus. Sed quam elit, faucibus vitae odio euismod, molestie viverra tellus. Proin in condimentum metus. Pellentesque ut sem quis est volutpat sagittis. Fusce condimentum felis quis erat finibus semper. Nulla at commodo mi. Integer non ante facilisis, finibus lectus non, accumsan risus. Curabitur id luctus ex. In hac habitasse platea dictumst.</p><hr><p>Curabitur gravida dapibus orci vitae molestie. Aenean ut massa neque. Donec gravida nibh at lorem elementum venenatis. Nulla facilisis neque tortor, at rutrum dui hendrerit id. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc at efficitur diam. Phasellus accumsan, urna eget egestas pulvinar, tortor dolor congue quam, vitae mollis lorem orci laoreet est.</p>"
+            }
+        }
+    },
+    "TESTAH": {
+      "startNode": 1,
+      "nodes": {
+        "1": {
+          "type": "html",
+          "content": "<a class=\"link test\">Test</a>"
+        }
+      }
+    }
+}

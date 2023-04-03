@@ -1,0 +1,134 @@
+{
+    "DEMOAA": {
+        "startNode": "node-1",
+        "nodes": {
+            "node-1": {
+                "type": "html",
+                "content": "<p>This is a HTML node!</p><img src=\"image.png\">"
+            }
+        }
+    },
+    "DEMOAB": {
+        "startNode": "start",
+        "nodes": {
+            "start": {
+                "type": "option-input",
+                "options": [
+                    {
+                        "label": "Option 1",
+                        "goto": "node-1"
+                    },
+                    {
+                        "label": "Option 2",
+                        "goto": "node-2"
+                    },
+                    {
+                        "label": "Option 3",
+                        "goto": "node-3"
+                    }
+                ]
+            },
+            "node-1": {
+                "type": "html",
+                "content": "You chose option 1."
+            },
+            "node-2": {
+                "type": "html",
+                "content": "You chose option 2."
+            },
+            "node-3": {
+                "type": "html",
+                "content": "You chose option 3."
+            }
+        }
+    },
+    "DEMOAC": {
+        "startNode": "start",
+        "nodes": {
+            "start": {
+                "type": "text-input",
+                "prompt": "Enter the password",
+                "responses": [
+                    {
+                        "check": {
+                            "type": "string",
+                            "string": "PassWord",
+                            "isCaseSensitive": true
+                        },
+                        "action": {
+                            "type": "goto",
+                            "goto": "success-node"
+                        }
+                    },
+                    {
+                        "check": {
+                            "type": "regex",
+                            "regex": "^password$",
+                            "regexFlags": "i"
+                        },
+                        "action": {
+                            "type": "message",
+                            "message": "You are close, but the password is case sensitive."
+                        }
+                    }
+                ],
+                "fallthroughResponse": "Incorrect."
+            },
+            "success-node": {
+                "type": "html",
+                "content": "Correct!"
+            }
+        }
+    },
+    "DEMOAD": {
+        "startNode": "1",
+        "nodes": {
+            "1": {
+                "type": "html",
+                "content": "Let’s find out more!",
+                "goto": "2"
+            },
+            "2": {
+                "type": "click-image-input",
+                "prompt": "Click to investigate",
+                "image": "image.png",
+                "clickMap": "image-click-map.inline.png",
+                "clickActions": {
+                    "#00ff00": {
+                        "type": "goto",
+                        "goto": "click-kerac"
+                    },
+                    "#0000ff": {
+                        "type": "goto",
+                        "goto": "click-decro"
+                    },
+                    "#ffff00": {
+                        "type": "goto",
+                        "goto": "click-backpack"
+                    },
+                    "#ff0000": {
+                        "type": "message",
+                        "message": "“Hey, sweety!”"
+                    },
+                    "#00ffff": {
+                        "type": "message",
+                        "message": "!"
+                    }
+                },
+                "fallthroughResponse": "Nothing here…"
+            },
+            "click-kerac": {
+                "type": "html",
+                "content": "Kerac, the green dragon."
+            },
+            "click-decro": {
+                "type": "html",
+                "content": "Decro, the arctic wolf."
+            },
+            "click-backpack": {
+                "type": "html",
+                "content": "Decro’s backpack."
+            }
+        }
+    }
+}
