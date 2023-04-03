@@ -1,5 +1,27 @@
 # Story Puzzle Format
 
+Table of contents
+
+- [Story Puzzle Format](#story-puzzle-format)
+  - [Story](#story)
+  - [Puzzle](#puzzle)
+  - [Flag](#flag)
+  - [NodeId](#nodeid)
+  - [Node](#node)
+  - [NodeHtml](#nodehtml)
+  - [NodeTextInput](#nodetextinput)
+    - [TextInputResponse](#textinputresponse)
+      - [TextInputResponseCheck](#textinputresponsecheck)
+      - [TextInputResponseAction](#textinputresponseaction)
+  - [NodeOptionInput](#nodeoptioninput)
+    - [NodeOptionInputOption](#nodeoptioninputoption)
+  - [NodeClickImageInput](#nodeclickimageinput)
+    - [NodeClickImageInputAction](#nodeclickimageinputaction)
+  - [NodeGoto](#nodegoto)
+  - [NodeSetFlag](#nodesetflag)
+  - [NodeCheckFlag](#nodecheckflag)
+  - [NodePenaltyKickToStart](#nodepenaltykicktostart)
+
 ## Story
 
 JSON files in `src/puzzle/data.dev/` and `src/puzzle/data.prod` takes the following structure:
@@ -38,9 +60,9 @@ Throughout the game, flags may be set to `true` or `false` and used to control v
 }
 ```
 
-- A `type` of `global` will store the true/false value across different `Puzzle`s. This is persistently stored in the browser `localStorage`.
-- A `type` of `local` will store the true/false value within the current `Puzzle`. Note that if this value is set at a certain node, it will be undone if the user backtracks before this node.
-- `key` is a unique identifier to represent this flag.
+-   A `type` of `global` will store the true/false value across different `Puzzle`s. This is persistently stored in the browser `localStorage`.
+-   A `type` of `local` will store the true/false value within the current `Puzzle`. Note that if this value is set at a certain node, it will be undone if the user backtracks before this node.
+-   `key` is a unique identifier to represent this flag.
 
 A flag value is set to `false` by default.
 
@@ -52,25 +74,14 @@ A flag value is set to `false` by default.
 
 A node can be one of the following types:
 
-- [Story Puzzle Format](#story-puzzle-format)
-  - [Story](#story)
-  - [Puzzle](#puzzle)
-  - [Flag](#flag)
-  - [NodeId](#nodeid)
-  - [Node](#node)
-  - [NodeHtml](#nodehtml)
-  - [NodeTextInput](#nodetextinput)
-    - [TextInputResponse](#textinputresponse)
-      - [TextInputResponseCheck](#textinputresponsecheck)
-      - [TextInputResponseAction](#textinputresponseaction)
-  - [NodeOptionInput](#nodeoptioninput)
-    - [NodeOptionInputOption](#nodeoptioninputoption)
-  - [NodeClickImageInput](#nodeclickimageinput)
-    - [NodeClickImageInputAction](#nodeclickimageinputaction)
-  - [NodeGoto](#nodegoto)
-  - [NodeSetFlag](#nodesetflag)
-  - [NodeCheckFlag](#nodecheckflag)
-  - [NodePenaltyKickToStart](#nodepenaltykicktostart)
+-   <a href="#nodehtml">NodeHtml</a>
+-   [NodeTextInput](#nodetextinput)
+-   [NodeOptionInput](#nodeoptioninput)
+-   [NodeClickImageInput](#nodeclickimageinput)
+-   [NodeGoto](#nodegoto)
+-   [NodeSetFlag](#nodesetflag)
+-   [NodeCheckFlag](#nodecheckflag)
+-   [NodePenaltyKickToStart](#nodepenaltykicktostart)
 
 ## NodeHtml
 
@@ -239,8 +250,8 @@ A `NodeOptionInput` node will render a list of options that the player can selec
 }
 ```
 
-- `options` is an array of [NodeOptionInputOption](#nodeoptioninputoption)s to be rendered.
-- `fallthroughGoto`: if no available options, render the node specified by this node ID. If this is `undefined` and no available options are left, then the flow ends.
+-   `options` is an array of [NodeOptionInputOption](#nodeoptioninputoption)s to be rendered.
+-   `fallthroughGoto`: if no available options, render the node specified by this node ID. If this is `undefined` and no available options are left, then the flow ends.
 
 ### NodeOptionInputOption
 
@@ -255,10 +266,10 @@ A `NodeOptionInputOption` represents a selectable option in [NodeOptionInput](#n
 }
 ```
 
-- `label` is the HTML string to render on the option.
-- `goto` is the ID of the node to render next when this option is selected.
-- `showFlag`: if `undefined`, the option will always be available. If specified and the flag’s value is set to `true`, then this option will be available. Otherwise, it will be hidden.
-- `oneUseFlag`: if specified, this option will only appear if the flag is set to `false`. Upon visiting, the flag is set to `true`. Higher precedence than `showFlag`.
+-   `label` is the HTML string to render on the option.
+-   `goto` is the ID of the node to render next when this option is selected.
+-   `showFlag`: if `undefined`, the option will always be available. If specified and the flag’s value is set to `true`, then this option will be available. Otherwise, it will be hidden.
+-   `oneUseFlag`: if specified, this option will only appear if the flag is set to `false`. Upon visiting, the flag is set to `true`. Higher precedence than `showFlag`.
 
 ## NodeClickImageInput
 
@@ -322,7 +333,7 @@ When a `NodeGoto` node is reached, nothing new is rendered. The corresponding fl
 }
 ```
 
-- `goto` is the ID of the next node to render.
+-   `goto` is the ID of the next node to render.
 
 ## NodeSetFlag
 
@@ -337,9 +348,9 @@ When a `NodeSetFlag` node is reached, nothing new is rendered. The corresponding
 }
 ```
 
-- `flag` is the [Flag](#flag) to set.
-- `value` is the new value of the flag. Defaults to `true`.
-- `goto` is the ID of the node to render next.
+-   `flag` is the [Flag](#flag) to set.
+-   `value` is the new value of the flag. Defaults to `true`.
+-   `goto` is the ID of the node to render next.
 
 Note that if a player changes their input at an earlier node, this node will be “undone” and the value of the flag will go back to what it originally was.
 
@@ -356,9 +367,9 @@ When a `NodeCheckFlag` node is reached, nothing new is rendered. The next node r
 }
 ```
 
-- `flag` is the [Flag](#flag) to check.
-- `gotoIfTrue` is the ID of the node to render next if `flag` is set to true.
-- `gotoIfFalse` is the ID of the node to render next if `flag` is set to false.
+-   `flag` is the [Flag](#flag) to check.
+-   `gotoIfTrue` is the ID of the node to render next if `flag` is set to true.
+-   `gotoIfFalse` is the ID of the node to render next if `flag` is set to false.
 
 ## NodePenaltyKickToStart
 
@@ -372,6 +383,5 @@ When a `NodePenaltyKickToStart` node is reached, the player is immediately shown
 }
 ```
 
-- `content` is the HTML string to render.
-- `delay` is the time (in milliseconds) to display the message before kicking the player to the code-entry screen.
-
+-   `content` is the HTML string to render.
+-   `delay` is the time (in milliseconds) to display the message before kicking the player to the code-entry screen.
